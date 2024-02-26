@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>task 2.5</title>
+</head>
+
+<body>
+  <style>
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    }
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+
+    table {
+      border: 1px solid #000;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+
+        <p>Задача 5. Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.
+        </p>
+        <script>
+
+          let quantitySecond = parseInt(prompt("Введіть кількість секунд", '0'));
+
+          const hour = 3600;
+          const minute = 60;
+
+          let totalHour = Math.floor(quantitySecond / hour);
+          let totalMinute = Math.floor((quantitySecond % hour) / minute);
+          let totalSecond = quantitySecond % minute;
+
+          document.write(`
+          <p>Відповідь:</p>
+          <p>${Math.floor(totalHour)} год </p>
+          <p>${totalMinute} хв </p>
+          <p>${totalSecond} сек</p>
+         `);
+
+        </script>
+        <p></p>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+
+      </div>
+    </footer>
+  </div>
+</body>
