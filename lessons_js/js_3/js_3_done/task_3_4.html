@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>task 3.4</title>
+</head>
+
+<body>
+  <style>
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    }
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у садочку, школярем, студентом,
+          працівником, пенсіонером).
+        </p>
+        <script>
+          let userAge = parseInt(prompt("Введіть ваш вік", "0"))
+          let result
+
+          if (child = userAge <= 6) result = "Ви ще дитячому садочку "
+          else if (schoolboy = userAge <= 17) result = "Ви вже школяр "
+          else if (student = userAge <= 22) result = "Ви з'ясовується студент "
+          else if (laborer = userAge <= 60) result = "Ви працівник  "
+          else if (pensioner = userAge <= 130) result = "Ви вже на пенсії"
+          else result = "некоректний вік"
+          // const student = userAge <= 22
+          // const laborer = userAge <= 60
+          // const pensioner = userAge <= 100
+
+          document.write(result)
+
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+
+      </div>
+    </footer>
+  </div>
+</body>
