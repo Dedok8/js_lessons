@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+  <title>task 12.2</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p> Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування
+          змішуванням.
+        </p>
+        <script>
+          let arr = [17, 42, 9, 30, 55, 23, 11, 8, 37, 14, 66, 20, 5, 28, 49, 19, 3, 72, 10, 91, 63, 25, 16, 33, 88, 7, 41, 12, 50, 27]
+          document.write(`Початковий масив ${arr} <br>`)
+          let numberOfExchanges = 0
+          let numberOfComparisons = 0
+          let leftIndex = 0
+          let rightIndex = arr.length - 1
+          while (leftIndex < rightIndex) {
+            let changed = false
+            for (let i = leftIndex + 1; i <= rightIndex; i++) {
+              numberOfComparisons++
+              if (arr[i - 1] > arr[i]) {
+                let temp = arr[i - 1]
+                arr[i - 1] = arr[i]
+                arr[i] = temp
+                changed = true
+                numberOfExchanges++
+              }
+            }
+            rightIndex--
+            if (changed === false) break
+            changed = false
+            for (let i = rightIndex; i > leftIndex; i--) {
+              numberOfComparisons++
+              if (arr[i - 1] > arr[i]) {
+                let temp = arr[i - 1]
+                arr[i - 1] = arr[i]
+                arr[i] = temp
+                changed = true
+                numberOfExchanges++
+              }
+            }
+            leftIndex++
+            if (changed === false) break
+          }
+          document.write(`Відсортований масив ${arr} <br>`)
+          document.write(`кількість обмінів ${numberOfExchanges} <br>`)
+          document.write(`Кількість порівнянь  ${numberOfComparisons}<br>`)
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+      </div>
+    </footer>
+  </div>
+</body>

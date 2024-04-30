@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+  <title>task 7.3</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+
+    table,
+    tr,
+    td {
+      border: 1px #000 solid;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Створити окремі функції, які для 4 чисел знаходять:
+          <br>
+          1)суму;
+          <br>
+          2)добуток;
+          <br>
+          3)середнє арифметичне;
+          <br>
+          4)мінімальне значення.
+
+        </p>
+        <script>
+          // Sum
+          let num1 = parseFloat(prompt("Введіть перше число"))
+          let num2 = parseFloat(prompt("Введіть друге число"))
+
+          function getSum(num1, num2) {
+            return Math.round(num1) + Math.round(num2);
+          }
+
+
+          // extraction
+          function getExtraction(num1, num2) {
+            return Math.round(num1) * Math.round(num2);
+          }
+
+
+          // average
+          function getAverage(num1, num2) {
+            return (Math.round(num1) + Math.round(num2)) / 2;
+          }
+
+
+          // min
+          function getMin(num1, num2) {
+            min = Math.min(Math.round(num1) + Math.round(num2));
+            return min;
+          }
+
+
+          let resultSum = getSum(num1, num2)
+          let resultExtraction = getExtraction(num1, num2)
+          let resultAverage = getAverage(num1, num2)
+          let resultMin = getMin(num1, num2)
+
+          document.write(`
+          <p>Результат суми: ${resultSum}</p>
+          <p>Результат множення:${resultExtraction}</p>
+          <p>Результат середнього арефметичного:${resultAverage}</p>
+          <p>Результат мінімального:${resultMin}</p>
+          `)
+        </script>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__container">
+      </div>
+    </footer>
+  </div>
+</body>

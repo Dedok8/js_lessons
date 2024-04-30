@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>task 11.1</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Знайти суми елементів у вказаній області <br>
+          1) номери рядків від 0 до половини, стовпці від 0 до половини <br>
+          2) номери рядків від 0 до половини, стовпці від половини до кінця <br>
+          3) номери рядків (від половини до кінця, стовпці від 0 до половини <br>
+          4) номери рядків від половини до кінця , стовпці від половини до кінця <br>
+          5) Суму парних рядків <br>
+          6) Суму непарних стовпців <br>
+          7) У парних рядках – непарні стовпці, у непарних – парні.
+
+        </p>
+        <script>
+          let twoDimArray = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 16]
+          ]
+
+          // 1) номери рядків від 0 до половини, стовпці від 0 до половини
+          let sumUpperLeftCorner = 0
+          for (let leftTopRow = 0; leftTopRow < 2; leftTopRow++) {
+            for (let leftTopColumn = 0; leftTopColumn < 2; leftTopColumn++) {
+              sumUpperLeftCorner += twoDimArray[leftTopRow][leftTopColumn]
+            }
+          }
+
+          document.write(`номери рядків від 0 до половини, стовпці від 0 до половини ${sumUpperLeftCorner} <br>`)
+
+          // 2) номери рядків від 0 до половини, стовпці від половини до кінця
+          let sumUpperRightCorner = 0
+
+          for (let rightTopRow = 0; rightTopRow < 2; rightTopRow++) {
+            for (let rightTopColumn = 2; rightTopColumn < 4; rightTopColumn++) {
+              sumUpperRightCorner += twoDimArray[rightTopRow][rightTopColumn]
+            }
+          }
+
+          document.write(`номери рядків від 0 до половини, стовпці від половини до кінця ${sumUpperRightCorner} <br>`)
+
+
+          // 3) номери рядків(від половини до кінця, стовпці від 0 до половини
+          let sumLowerLeftCorner = 0
+          for (let bottomLeftRow = 2; bottomLeftRow < 4; bottomLeftRow++) {
+            for (let bottomLeftColumn = 0; bottomLeftColumn < 2; bottomLeftColumn++) {
+              sumLowerLeftCorner += twoDimArray[bottomLeftRow][bottomLeftColumn]
+            }
+          }
+
+          document.write(`номери рядків(від половини до кінця, стовпці від 0 до половини ${sumLowerLeftCorner} <br>`)
+
+          // 4) номери рядків від половини до кінця, стовпці від половини до кінця
+          let sumLowerRightCorner = 0
+          for (let bottomRightRow = 2; bottomRightRow < 4; bottomRightRow++) {
+            for (let bottomRightColumn = 2; bottomRightColumn < 4; bottomRightColumn++) {
+              sumLowerRightCorner += twoDimArray[bottomRightRow][bottomRightColumn]
+            }
+          }
+
+          document.write(`номери рядків(від половини до кінця, стовпці від 0 до половини ${sumLowerLeftCorner} <br>`)
+
+          // 5)Суму парних рядків
+          function getSumOfEvenRows(twoDimArray) {
+            let sum = 0
+            for (let rowIndex = 0; rowIndex < twoDimArray.length; rowIndex++) {
+              if (rowIndex % 2 === 0) {
+                for (let colIndex = 0; colIndex < twoDimArray[rowIndex].length; colIndex++) {
+                  sum += twoDimArray[rowIndex][colIndex]
+                }
+              }
+            }
+            return sum;
+          }
+          let resultSumOfEvenRows = getSumOfEvenRows(twoDimArray);
+
+          document.write(`Сума парних рядків ${resultSumOfEvenRows} <br>`)
+
+          // 6)Суму непарних стовпців
+          function getSumOfOddRows(twoDimArray) {
+            let sum = 0
+            for (let rowIndex = 0; rowIndex < twoDimArray.length; rowIndex++) {
+              if (rowIndex % 2 !== 0) {
+                for (let colIndex = 0; colIndex < twoDimArray[rowIndex].length; colIndex++) {
+                  sum += twoDimArray[rowIndex][colIndex]
+                }
+              }
+            }
+            return sum
+          }
+
+          let sumOfOddRows = getSumOfOddRows(twoDimArray)
+          document.write(`Суму непарних стовпців ${sumOfOddRows} <br>`)
+
+          // 7) У парних рядках – непарні стовпці, у непарних – парні.
+          for (let rowIndex = 0; rowIndex < twoDimArray.length; rowIndex++) {
+            let sum = 0
+            for (let colIndex = 0; colIndex < twoDimArray[rowIndex].length; colIndex++) {
+              if ((rowIndex % 2 === 0 && colIndex % 2 !== 0) || (rowIndex % 2 !== 0 && colIndex % 2 === 0)) {
+                sum += twoDimArray[rowIndex][colIndex]
+              }
+            }
+            document.write(`У парних рядках – непарні стовпці, у непарних – парні. ${sum} <br>`)
+
+          }
+
+
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+
+      </div>
+    </footer>
+  </div>
+</body>

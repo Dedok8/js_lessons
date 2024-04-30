@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>task 10.1</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br>
+          1)Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн. <br>
+          2)Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн. <br>
+          3)Сформувати список з тих цін, які більші за попереднє значення <br>
+          4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального<br>
+          5)Підрахувати кількість змін цін <br>
+          6)Визначити, чи є ціна, що менше 1000 <br>
+          7)Визначати, чи усі ціни більше за 1000 <br>
+          8)Підрахувати кількість цін, що більше за 1000 <br>
+          9)Підрахувати суму цін, що більше за 1000 <br>
+          10)Знайти першу ціну, що більше за 1000 <br>
+          11)Знайти індекс першої ціни, що більше за 1000 <br>
+          12)Знайти останню ціну, що більше за 1000 <br>
+          13)Знайти індекс останньої ціни, що більше за 1000
+          document.write(`${}`)
+
+        </p>
+        <script>
+          //========================================================================================================================================================
+          // let userMonth = parseInt(prompt("Введіть кількість місяців"))
+
+          function getRandomPrice(from, to) {
+            let minPrice = Math.ceil(from)
+            let maxPrice = Math.floor(to)
+            let randomPrice = Math.floor(Math.random() * (maxPrice - minPrice) + minPrice)
+            return randomPrice
+          }
+
+          function getRandomArraySearch(from, to) {
+            let newRandomArraySearch = []
+            for (let i = 0; i < 5; i++) {
+              newRandomArraySearch.push(getRandomPrice(from, to))
+            }
+            return newRandomArraySearch
+          }
+
+          let randomPrice = getRandomArraySearch(1, 10000)
+          document.write(`Історія цін на папери ${randomPrice} <br> `)
+
+
+          //1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+          const expensivePrices = randomPrice.filter(price => price > 1000)
+          document.write(`Новий масив, у якому є тільки ті, що більші за 1000 грн. ${expensivePrices} <br>`)
+
+          //2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+          const indexesOfExpensivePrices = randomPrice
+            .map((price, index) => price > 1000 ? index : undefined)
+            .filter(index => index !== undefined)
+
+          document.write(`новий масив, у якому є номери тільки тих, що більші за 1000 грн.${indexesOfExpensivePrices} <br>`)
+
+          //3. Сформувати список з тих цін, які більші за попереднє значення
+
+          let previousPrice = randomPrice[0]
+
+          for (let i = 1; i < randomPrice.length; i++) {
+            if (randomPrice[i] > previousPrice) {
+              // Якщо поточна ціна більша за попередню
+              console.log("Ціна", randomPrice[i], "більша за попередню ціну", previousPrice)
+            } else {
+              // Якщо поточна ціна не більша за попередню
+              console.log("Ціна", randomPrice[i], "не більша за попередню ціну", previousPrice)
+            }
+            previousPrice = randomPrice[i]
+          }
+          document.write(`Вивів у консоль, т.як не зрозумів як вивести :( <br>`)
+
+          //4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+          const maximumValue = Math.max(...randomPrice);
+
+          const normalizedPrices = [];
+
+          for (const price of randomPrice) {
+            const normalizedPrice = (price / maximumValue) * 100;
+            normalizedPrices.push(normalizedPrice);
+          }
+
+          document.write(`новий масив, що міститиме значення цін у відсотках стосовно максимального ${normalizedPrices} <br>`)
+
+          //5. Підрахувати кількість змін цін 
+
+          function getCountPriceChanges(prices) {
+            let countChanges = 0;
+            for (let i = 1; i < prices.length; i++) {
+              if (prices[i] !== prices[i - 1]) {
+                countChanges++;
+              }
+            }
+            return countChanges;
+          }
+          let countPriceChanges = getCountPriceChanges(randomPrice)
+          document.write(`кількість змін цін  ${countPriceChanges} <br>`)
+
+          //6. Визначити, чи є ціна, що менше 1000
+
+          // const hasElementOverThousand = randomPrice.some(randomPrice => randomPrice > 1000)
+          if (randomPrice.some((randomPrice) => randomPrice > 1000)) document.write('чи є ціна, що менше 1000? Yes <br>')
+          else document.write(`чи є ціна, що менше 1000? no <br>`)
+
+          //7. Визначати, чи усі ціни більше за 1000
+          if (randomPrice.every((randomPrice) => randomPrice > 1000)) document.write(' чи усі ціни більше за 1000? Yes <br>')
+          else document.write(`чи усі ціни більше за 1000? no <br>`)
+
+          //8. Підрахувати кількість цін, що більше за 1000
+
+          let numberPricesOverThousand = randomPrice.reduce((randomPrice, element) => (element > 1000 ? randomPrice + 1 : randomPrice), 0)
+
+          //9. Підрахувати суму цін, що більше за 1000
+
+          let sumElementsGreaterThanOneThousand = randomPrice.reduce((total, amount) => total > 1000 ? total + amount : total, 0)
+          document.write(`сума цін, що більше за 1000 ${sumElementsGreaterThanOneThousand} <br>`)
+
+          //10. Знайти першу ціну, що більше за 1000
+
+          let firstPriceThatOverThousand = randomPrice.find(randomPrice => randomPrice > 1000)
+          document.write(`Знайти першу ціну, що більше за 1000 = ${firstPriceThatOverThousand} <br>`)
+
+          //11. Знайти індекс першої ціни, що більше за 1000
+
+          let firstIndexThatOverThousand = randomPrice.findIndex(randomPrice => randomPrice > 1000)
+          document.write(`індекс першої ціни, що більше за 1000 = ${firstIndexThatOverThousand} <br>`)
+
+          // 12. Знайти останню ціну, що більше за 1000
+          let lastPriceThatOverThousand = randomPrice.findLast(randomPrice => randomPrice > 1000)
+          document.write(` остання ціна, що більше за 1000 = ${lastPriceThatOverThousand} <br>`)
+
+          // 13. Знайти індекс останньої ціни, що більше за 1000
+          let lastIndexThatOverThousand = randomPrice.findLastIndex(randomPrice => randomPrice > 1000)
+          document.write(`індекс останньої ціни, що більше за 1000 = ${lastIndexThatOverThousand}`)
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+
+      </div>
+    </footer>
+  </div>
+</body>

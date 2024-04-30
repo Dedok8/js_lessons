@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+  <title>task 11.2</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Дано інформацію про прибуток К магазинів протягом тижня. Знайти : <br>
+          1) загальний прибуток кожного масиву за тиждень; <br>
+          2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+          т.д.); <br>
+          3) загальний прибуток за робочі дні <br>
+          4) загальний прибуток за вихідні дні <br>
+          5) максимальний прибуток за середу <br>
+          6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200 <br>
+          7) відсортувати кожен тиждень за зростанням <br>
+          8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+          рядків потрібно порівнювати максимальні елементи у кожному з цих рядків <br>
+          9) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+          знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен
+          іти раніше). <br>
+
+        </p>
+        <script>
+          let storeProfits = [
+            //П    В    С   Ч     П    С    Н
+            [523, 167, 888, 435, 721, 234, 567],
+            [376, 925, 312, 649, 179, 876, 543],
+            [246, 854, 587, 973, 199, 432, 765],
+            [721, 386, 543, 918, 256, 654, 321],
+            [682, 138, 524, 799, 471, 987, 345],
+            [789, 543, 321, 678, 987, 456, 234],
+            [234, 567, 890, 123, 456, 789, 567]
+          ]
+
+          // 1) загальний прибуток кожного масиву за тиждень
+          for (let row = 0; row < storeProfits.length; row++) {
+            let profitsAllStore = 0
+            for (let col = 0; col < storeProfits[row].length; col++) {
+              profitsAllStore += storeProfits[row][col]
+            }
+            document.write(`Прибуток кожнього магазину за тиждень ${profitsAllStore} <br>`)
+          }
+
+          // 2) загальний прибуток усіх магазинів по дням(загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.)
+          let totalProfitPerDay = []
+
+          for (let col = 0; col < storeProfits[0].length; col++) {
+            let totalProfitOfDay = 0
+            for (let row = 0; row < storeProfits.length; row++) {
+              totalProfitOfDay += storeProfits[row][col]
+            }
+            totalProfitPerDay.push(totalProfitOfDay)
+          }
+
+          document.write(`загальний прибуток усіх магазинів по дням(загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.)${totalProfitPerDay} <br>`)
+
+          // 3) загальний прибуток за робочі дні
+          let totalProfitWorkDays = 0
+          for (let row = 0; row < 5; row++) {
+            let totalProfitWorkDay = 0;
+            for (let col = 0; col < storeProfits[row].length; col++) {
+              totalProfitWorkDay += storeProfits[row][col]
+            }
+            totalProfitWorkDays += totalProfitWorkDay
+          }
+          document.write(`загальний прибуток за робочі дні${totalProfitWorkDays} <br>`)
+
+          // 4) загальний прибуток за вихідні дні
+          let totalProfitWeekendDays = 0
+          for (let row = 5; row < 7; row++) {
+            let totalProfitWeekendDay = 0;
+            for (let col = 0; col < storeProfits[row].length; col++) {
+              totalProfitWeekendDay += storeProfits[row][col]
+            }
+            totalProfitWeekendDays += totalProfitWeekendDay
+          }
+          document.write(`загальний прибуток за вихідні дні ${totalProfitWeekendDays} <br>`)
+
+          // 5)максимальний прибуток за середу
+          let maxProfitWednesday = 0
+          for (let wedIndex = 0; wedIndex < storeProfits.length; wedIndex++) {
+            if (storeProfits[wedIndex][2] > maxProfitWednesday)
+              maxProfitWednesday = storeProfits[wedIndex][2]
+          }
+          document.write(`максимальний прибуток за середу ${maxProfitWednesday} <br>`)
+
+          // 6)сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+          let arrayWithCaluesGreaterTwoHundred = []
+          for (let row = 0; row < storeProfits.length; row++) {
+            for (let col = 0; col < storeProfits[row].length; col++) {
+              if (storeProfits[row][col] > 200) {
+                arrayWithCaluesGreaterTwoHundred.push(storeProfits[row][col])
+              }
+            }
+          }
+          document.write(`загальний список (одновимірний масив) зі значенням, які що більші за 200 ${arrayWithCaluesGreaterTwoHundred}<br>`)
+          // 7) відсортувати кожен тиждень за зростанням
+          let growthRate
+          for (let row = 0; row < storeProfits.length; row++) {
+            storeProfits[row].sort((a, b) => a - b)
+            growthRate = storeProfits
+          }
+          document.write(`відсортувати кожен тиждень за зростанням ${growthRate} <br>`)
+          // 8)відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+          // рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+          let sortProfits = storeProfits.sort((a, b) => Math.max(...b) - Math.max(...a))
+          document.write(`відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+          // рядків потрібно порівнювати максимальні елементи у кожному з цих рядків ${sortProfits} <br>`)
+          // 9) упорядкувати тижні(рядки) за спаданням суми елементів у рядку(тобто при порівнянні двох рядків треба
+          // знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен
+          // іти раніше)
+
+          let sortedStoreProfits = storeProfits.slice().sort((a, b) => b.reduce((acc, val) => acc + val, 0) - a.reduce((acc, val) => acc + val, 0))
+          document.write(`упорядкувати тижні(рядки) за спаданням суми елементів у рядку(тобто при порівнянні двох рядків треба
+          // знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен
+          // іти раніше) ${sortedStoreProfits} <br>`)
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+      </div>
+    </footer>
+  </div>
+</body>
