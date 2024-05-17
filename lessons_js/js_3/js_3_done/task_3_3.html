@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>task 3.3</title>
+</head>
+
+<body>
+  <style>
+    *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    }
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+        </p>
+        <script>
+          const minNumber = Math.ceil(1)
+          const maxNumber = Math.floor(5)
+
+          randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber)
+
+          let result
+
+          let userNumber = parseInt(prompt("Введіть число від 1 до 5", "0"))
+          if (userNumber < 1 || userNumber > 5) result = "Невірно  ввели число, спробуйте від 1 до 5"
+          else if (userNumber === randomNumber) result = "Так! Ви вгадали з першої спроби"
+          else {
+            userNumber = parseInt(prompt("Ви не вгадали з другої спроби, введіть знову число від 1 до 5", "0"))
+
+            if (userNumber < 1 || userNumber > 5) result = "Неккоректне число"
+            else if (userNumber === randomNumber) result = "Ви вгадали"
+            else result = "Ви не вгадали";
+          }
+
+          document.write(result)
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+
+      </div>
+    </footer>
+  </div>
+</body>

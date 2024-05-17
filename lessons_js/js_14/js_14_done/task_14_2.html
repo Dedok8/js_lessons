@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="js_2/style.css"> -->
+  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+  <title>task 14.2</title>
+</head>
+
+<body>
+  <style>
+    /* *,
+    *::before,
+    *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      display: inline-block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    img {
+      vertical-align: top;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    html,
+    body {
+      line-height: 1;
+      height: 100%;
+    } */
+
+    .page {
+      padding: 50px;
+    }
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 40px;
+    }
+  </style>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header__container">
+      </div>
+    </header>
+
+    <main class="page">
+      <div>
+        <p>Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+        </p>
+        <script>
+          function getYearAfterNMonths({ month, year }, nMonths) {
+            const totalMonths = month - 1 + nMonths
+            const yearAfterNMonths = year + Math.floor(totalMonths / 12)
+            return yearAfterNMonths
+          }
+
+          let nMonths = parseInt(prompt("Введіть кількість місяців", "33"))
+
+          let object = {
+            day: 16,
+            month: 5,
+            year: 2024
+          }
+
+          const yearAfterNMonths = getYearAfterNMonths(object, nMonths)
+
+          document.write(`Зараз ${object.month} місяць ${object.year} рік <br>`);
+          document.write(`Через ${nMonths} місяців буде ${yearAfterNMonths} рік `);
+        </script>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+      </div>
+    </footer>
+  </div>
+</body>
